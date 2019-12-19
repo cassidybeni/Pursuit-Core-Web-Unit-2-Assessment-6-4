@@ -7,12 +7,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     form.addEventListener("submit", (event) => {
         event.preventDefault()
-        for(let i = 1; i < 20; i++){
-            let li = document.createElement("li")
-            li.appendChild(review)
-            ul.appendChild(li)
-        }
-        
+        let li = document.createElement("li")
+        li.innerText = review.value
+        review.appendChild(li)
+        ul.appendChild(li)
         searchFilm(review.value, submitReview.value)
     })
 
@@ -20,14 +18,18 @@ document.addEventListener("DOMContentLoaded", () => {
         try {
             let res = await axois.get(`https://ghibliapi.herokuapp.com/films`)
             chooseFilm(res.data)
-            debugger
         } catch (error) {
     
         }
     }
+
+    const chooseFilm = async () => {
+        let selectFilm = document.querySelector("#selectFilm")
+        selectFilm.innerText = film.title
+    }
     
     const populateDiv = (films) => {
-        films.forEach(film => {
+        films.forEach((film) => {
             let h3 = document.createElement("h3")
             let p1 = document.createElement("p1")
             let p2 = document.createElement("p2")
