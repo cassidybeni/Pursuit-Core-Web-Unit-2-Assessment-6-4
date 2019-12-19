@@ -4,6 +4,17 @@ document.addEventListener("DOMContentLoaded", () => {
     let review = document.querySelector("#review")
     let submitReview = document.querySelector("#submitReview")
     let ul = document.querySelector("ul")
+
+    form.addEventListener("submit", (event) => {
+        event.preventDefault()
+        for(let i = 1; i < 20; i++){
+            let li = document.createElement("li")
+            li.appendChild(review)
+            ul.appendChild(li)
+        }
+        
+        searchFilm(review.value, submitReview.value)
+    })
     
     const populateDiv = (films) => {
         films.forEach(film => {
