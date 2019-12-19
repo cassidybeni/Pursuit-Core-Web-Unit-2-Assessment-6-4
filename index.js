@@ -15,6 +15,16 @@ document.addEventListener("DOMContentLoaded", () => {
         
         searchFilm(review.value, submitReview.value)
     })
+
+    const searchFilm = async () => {
+        try {
+            let res = await axois.get(`https://ghibliapi.herokuapp.com/films`)
+            chooseFilm(res.data)
+            debugger
+        } catch (error) {
+    
+        }
+    }
     
     const populateDiv = (films) => {
         films.forEach(film => {
